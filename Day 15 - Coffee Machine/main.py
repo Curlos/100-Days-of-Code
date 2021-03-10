@@ -77,14 +77,3 @@ while userRequest != "off":
                 print(f"Here is ${round(totalMoney, 2)} in change.")
             else:
                 print("Sorry that's not enough money. Money refunded.")
-
-
-
-# TODO: 2. Turn off the Coffee Machine by entering “off” to the prompt.
-# TODO: 3. Print report.
-# TODO: 4. Check resources sufficient?
-# TODO: 5. Process coins.
-# TODO: 6. Check transaction successful?
-# TODO: 7. Make Coffee.
-
-
