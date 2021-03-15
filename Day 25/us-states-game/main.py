@@ -52,4 +52,8 @@ elif len(correctStates) < 50:
     missingStatesData = pandas.DataFrame(missingStates)
     missingStatesData.to_csv("missing_states.csv")
 
+missingStatesNames = [
+    state for state in allStates if state not in correctStates]
+print(f"Missing states to study:{missingStatesNames}")
+
 screen.exitonclick()
