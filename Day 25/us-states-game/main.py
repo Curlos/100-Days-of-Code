@@ -1,3 +1,5 @@
+from state_name import State
+
 import turtle
 import pandas
 
@@ -27,12 +29,7 @@ while len(correctStates) < 50:
             y = int(state.y)
             correctStates[stateName] = (x, y)
 
-            stateTurtle = turtle.Turtle()
-            stateTurtle.hideturtle()
-            stateTurtle.penup()
-            stateTurtle.goto(x, y)
-            stateTurtle.write(f"{stateName}", font=("Verdana",
-                                                    10, "normal"))
+            newState = State(stateName, "black", x, y)
 
 if len(correctStates) == 50:
     print('You have guessed every state correctly!')
@@ -46,13 +43,7 @@ elif len(correctStates) < 50:
             x = int(s.x)
             y = int(s.y)
 
-            stateTurtle = turtle.Turtle()
-            stateTurtle.hideturtle()
-            stateTurtle.color("red")
-            stateTurtle.penup()
-            stateTurtle.goto(x, y)
-            stateTurtle.write(f"{state}", font=("Verdana",
-                                                10, "normal"))
+            newState = State(state, "red", x, y)
 
             missingStates['state'].append(state)
             missingStates['x'].append(x)
