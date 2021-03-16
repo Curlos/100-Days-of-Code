@@ -11,7 +11,7 @@ class Feet:
     def convert_to_centimeter(self):
         return self.val * 30.48
 
-    def convert_to_milimeter(self):
+    def convert_to_millimeter(self):
         return self.val * 305
 
     def convert_to_micrometer(self):

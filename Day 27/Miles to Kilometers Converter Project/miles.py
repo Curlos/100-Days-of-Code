@@ -11,7 +11,7 @@ class Miles:
     def convert_to_centimeter(self):
         return self.val * 160934
 
-    def convert_to_milimeter(self):
+    def convert_to_millimeter(self):
         return self.val * 1.609e+6
 
     def convert_to_micrometer(self):

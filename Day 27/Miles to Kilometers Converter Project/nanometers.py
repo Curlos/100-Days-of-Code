@@ -11,7 +11,7 @@ class Nanometers:
     def convert_to_centimeter(self):
         return self.val / 1e+7
 
-    def convert_to_milimeter(self):
+    def convert_to_millimeter(self):
         return self.val / 1e+6
 
     def convert_to_micrometer(self):

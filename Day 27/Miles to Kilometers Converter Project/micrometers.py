@@ -11,7 +11,7 @@ class Micrometers:
     def convert_to_centimeter(self):
         return self.val / 10000
 
-    def convert_to_milimeter(self):
+    def convert_to_millimeter(self):
         return self.val / 1000
 
     def convert_to_micrometer(self):
