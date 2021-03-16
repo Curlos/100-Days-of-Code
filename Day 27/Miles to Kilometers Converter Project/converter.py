@@ -10,8 +10,6 @@ from feet import Feet
 from inches import Inches
 from nautical_miles import NauticalMiles
 
-from pprint import pprint
-
 
 class Converter():
     def __init__(self, val, unit):
@@ -26,9 +24,9 @@ class Converter():
                                    'yards': Yards(val),
                                    'feet': Feet(val),
                                    'inches': Inches(val),
-                                   'nautical_miles': NauticalMiles(val)
+                                   'nautical miles': NauticalMiles(val)
                                    }
-        self.unit = unit
+        self.unit = unit.lower()
         self.conversions = {}
 
     def convert(self):
@@ -43,11 +41,6 @@ class Converter():
         self.conversions["yards"] = unit_class.convert_to_yard()
         self.conversions["feet"] = unit_class.convert_to_foot()
         self.conversions["inches"] = unit_class.convert_to_inch()
-        self.conversions["nautical_miles"] = unit_class.convert_to_nautical_mile()
+        self.conversions["nautical miles"] = unit_class.convert_to_nautical_mile()
 
         return self.conversions
-
-
-c = Converter(12, 'inches')
-# return a dictionary of units as keys and converted calculation as values
-pprint(c.convert())

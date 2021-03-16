@@ -1,66 +1,56 @@
-from tkinter import Tk, Label, Button, Entry
+from tkinter import Tk, Label, Button, Entry, Radiobutton, IntVar
+from converter import Converter
+
+UNITS = ["Kilometers", "Meters", "Centimeters", "Millimeters", "Micrometers",
+         "Nanometers", "Miles", "Yards", "Feet", "Inches", "Nautical Miles"]
+
+val = 0
+final_unit = 'kilometers'
+labels = []
 
 window = Tk()
 window.title("Mile to Km Converter")
-window.minsize(width=200, height=100)
+window.minsize(width=500, height=500)
 
 # Labels
 
-km = Label(text="0 kilometers", font=("Arial", 16))
-km.grid(column=0, row=1)
-km.config(padx=10)
+for i, unit_name in enumerate(UNITS):
+    unit = Label(text=f"0 {unit_name}", font=("Arial", 16))
+    unit.grid(column=1, row=i)
+    unit.config(padx=10)
+    labels.append(unit)
 
-cm = Label(text="0 centimeters", font=("Arial", 16))
-cm.grid(column=0, row=2)
-cm.config(padx=10)
 
-mm = Label(text="0 milimeters", font=("Arial", 16))
-mm.grid(column=0, row=3)
-mm.config(padx=10)
+# Radiobutton
+def change_unit():
+    final_unit = UNITS[radio_state.get()].lower()
 
-miles = Label(text="0 miles", font=("Arial", 16))
-miles.grid(column=0, row=4)
-miles.config(padx=10)
 
-yards = Label(text="0 Km", font=("Arial", 16))
-yards.grid(column=0, row=5)
-yards.config(padx=10)
+# Variable to hold on to which radio button value is checked.
+radio_state = IntVar()
 
-inches = Label(text="0 Km", font=("Arial", 16))
-inches.grid(column=0, row=6)
-inches.config(padx=10)
-
-feet = Label(text="0 Km", font=("Arial", 16))
-feet.grid(column=0, row=7)
-feet.config(padx=10)
+for i, unit_name in enumerate(UNITS):
+    unit = Radiobutton(text=f"{unit_name}", value=i,
+                       variable=radio_state, command=change_unit)
+    unit.grid(column=0, row=i)
+    unit.config(padx=10)
 
 # Entry
 input = Entry(width=10)
-input.grid(column=0, row=0)
-
-# Checkbutton
-
-
-def checkbutton_used():
-    # Prints 1 if On button checked, otherwise 0.
-    print(checked_state.get())
-
-
-# variable to hold on to checked state, 0 is off, 1 is on.
-checked_state = IntVar()
-checkbutton = Checkbutton(
-    text="Is On?", variable=checked_state, command=checkbutton_used)
-checked_state.get()
-checkbutton.pack()
+input.grid(column=0, row=13)
 
 # Button
+def convert_to_all_units():
+    val = float(input.get())
+    c = Converter(val, final_unit)
+    conversions = c.convert()
+
+    for i, label in enumerate(labels):
+        current_unit_name = UNITS[i]
+        label["text"] = f"{conversions.get(current_unit_name.lower())} {current_unit_name}"
 
 
-def convert_mile_to_others():
-    km["text"] = str(int(input.get()) * 1.609)
-
-
-button = Button(text="Calculate", command=convert_mile_to_others)
-button.grid(column=1, row=8)
+button = Button(text="Calculate", command=convert_to_all_units)
+button.grid(column=1, row=13)
 
 window.mainloop()
