@@ -40,8 +40,11 @@ input = Entry(width=10)
 input.grid(column=0, row=13)
 
 # Button
+
+
 def convert_to_all_units():
     val = float(input.get())
+    final_unit = UNITS[radio_state.get()].lower()
     c = Converter(val, final_unit)
     conversions = c.convert()
 
