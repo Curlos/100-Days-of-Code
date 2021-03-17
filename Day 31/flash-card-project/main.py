@@ -3,11 +3,18 @@ import json
 import pandas
 import random
 
-df = pandas.read_csv("data/french_words.csv")
+try:
+    df = pandas.read_csv("data/words_to_learn.csv")
+except FileNotFoundError:
+    df = pandas.read_csv("data/french_words.csv")
+
 translations = {row.French: row.English for (index, row) in df.iterrows()}
 french_words = list(translations.keys())
+english_words = list(translations.values())
 current_word = ''
 card_flip = None
+
+print(translations)
 
 BACKGROUND_COLOR = "#B1DDC6"
 
@@ -27,10 +34,14 @@ def next_card():
     global current_word, flip_timer
 
     if current_word != '':
-        print(translations.get(current_word))
-        translations.pop(current_word)
         french_words.remove(current_word)
-        print(translations.get(current_word))
+        english_words.remove(translations[current_word])
+
+        current_df = pandas.DataFrame(
+            {'French': french_words, 'English': english_words})
+        print(current_df)
+        csv_translations = current_df.to_csv(
+            "data/words_to_learn.csv", index=False)
 
     window.after_cancel(flip_timer)
     current_word = random.choice(french_words)
