@@ -5,3 +5,8 @@ data.txt
 data.json
 .env
 birthdays.csv
+.project_config
+misc.xml
+modules.xml
+profiles_settings.xml
+vcs.xml
