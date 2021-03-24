@@ -9,15 +9,18 @@ load_dotenv()
 APP_ID = os.getenv("APP_ID")
 API_KEY = os.getenv("API_KEY")
 USER_ID = os.getenv("USER_ID")
+AUTHORIZATION_HEADER = os.getenv("AUTHORIZATION_HEADER")
+SHEET_ENDPOINT = os.getenv("SHEET_ENDPOINT")
 
 headers = {
     "x-app-id": APP_ID,
     "x-app-key": API_KEY,
     "x-remote-user-id": "0",
+    "Authorization": AUTHORIZATION_HEADER
 }
 
 exercise_endpoint = "https://trackapi.nutritionix.com/v2/natural/exercise"
-add_workout_endpoint = f"https://api.sheety.co/{USER_ID}/myWorkouts/workouts"
+add_workout_endpoint = SHEET_ENDPOINT
 query = {
     "query": "I ran 3 miles and walked 2 miles"
 }
@@ -30,7 +33,8 @@ post_headers = {
     "x-app-id": APP_ID,
     "x-app-key": API_KEY,
     "x-remote-user-id": "0",
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "Authorization": AUTHORIZATION_HEADER
 }
 
 for exercise in exercises:
