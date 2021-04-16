@@ -33,6 +33,10 @@ class FlightSearch:
             response = requests.get(url=self.tequila_search_url, headers=self.headers, params=params)
             flights = response.json()[
                 'data']  # The Tequila API seems to sort the prices of each flight from lowest to greatest
+
+            if flights is None:
+                continue
+
             lowestFlightPrice = flights[0]['price']
 
             currency = list(flights[0]['conversion'].keys())[0]
