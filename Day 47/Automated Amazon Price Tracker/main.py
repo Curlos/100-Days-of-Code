@@ -1,5 +1,5 @@
-from price import Price
-from stock import Stock
+from price import PriceTracker
+from stock import StockTracker
 
 """def scrape_stock():
     notify_by = int(input("How would you like to be notified when the item is back in stock?"
@@ -17,6 +17,7 @@ from stock import Stock
         print('YAHOO!')
     print(in_stock)"""
 
-price_checker = Price()
-price_checker.check_price()
+
+stock_tracker = StockTracker()
+stock_tracker.check_in_stock()
 
