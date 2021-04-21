@@ -48,15 +48,9 @@ class InstagramFollowerBot():
             if time.time() - start_time >= 25:
                 break
 
-            try:
-                # If there are any accounts that I am not following in the window
-                elem_in_popup = self.driver.find_element_by_css_selector("button.sqdOP.L3NKy.y3zKF")
-                elem_in_popup.send_keys(Keys.END)
-            except:
-                # If I am following every account in the popup which would mean I wouldn't the right css class
-                # I'll need to change the selector to one for the following/requested buttons.
-                elem_in_popup = self.driver.find_element_by_css_selector("button.sqdOP.L3NKy._8A5w5")
-                elem_in_popup.send_keys(Keys.END)
+            # If there are any accounts that I am not following in the window
+            elem_in_popup = self.driver.find_element_by_css_selector("button.sqdOP.L3NKy.y3zKF")
+            elem_in_popup.send_keys(Keys.END)
 
         accounts_to_follow = self.driver.find_elements_by_css_selector("button.sqdOP.L3NKy.y3zKF")
 
